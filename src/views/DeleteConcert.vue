@@ -6,25 +6,78 @@
             <h2>{{ concert.artist | to-uppercase  }}</h2>
             <h2>{{ concert.event_date }}</h2>
             <article>{{ concert.location }}</article>
-           <button v-on:click="">remove</button>  
-</div>
+           
+    
+  </div>
+  <v-layout row justify-center>
+  <v-btn
+      color="primary"
+      dark
+      @click.stop="dialog = true"
+    >
+      delete
+    </v-btn>
+
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Wanna delete?</v-card-title>
+
+        <v-card-text>
+         U sure?
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="dialog = false"
+          >
+            don't
+          </v-btn>
+
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click.prevent="greet"
+          >
+            Yaaaaas
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+  </div>
+  
+  
+</template>
   
     
-</div>
-</template>
+
+
 <script>
 export default {
   data(){
       return{
-      concerts: [],
-       search:"",
+        dialog: false,
+        concerts: [],
+        search:"",
     
       }
   },
   methods: {
+       greet: function (event) {
+           
+       
+      
+    }
   },
   created() {
-      this.$http.get("http://localhost:8080/concerts/" ).then(function(data){
+      this.$http.get("http://localhost:8080/concerts").then(function(data){
          
          this.concerts=data.body.slice(0.10);
   })
@@ -56,16 +109,6 @@ export default {
     box-sizing: border-box;
     background:#eee;
 }
-button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 20px;
-  margin: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
+
 
 </style>

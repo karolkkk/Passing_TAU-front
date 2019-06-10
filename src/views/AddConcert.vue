@@ -14,6 +14,8 @@
         </form>
         <div v-if="submitted">
             <h3>Thanks for adding a concert</h3>
+     
+
         </div>
         
     </div>

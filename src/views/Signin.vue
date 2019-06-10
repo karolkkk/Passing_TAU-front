@@ -18,6 +18,8 @@ export default {
 }
 </script>
 
-<style scoped>
-   
+<style >
+   button{
+     background-color: #e7e7e7;
+   }
 </style>
