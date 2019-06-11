@@ -3,14 +3,14 @@
         <h2>Add a New Concert</h2>
         <form v-if="!submitted">
             <label>Concert Artist:</label>
-            <input type="text" v-model.lazy="concert.artist" required />
+            <input type="text" name=art v-model.lazy="concert.artist" required />
             <label>Concert Location:</label>
-            <input type="text" v-model.lazy="concert.location" required />
+            <input type="text" name=loc v-model.lazy="concert.location" required />
             <label>Concert Event Date:</label>
-            <input type="text" v-model.lazy="concert.event_date" required />
+            <input type="text" name=dat v-model.lazy="concert.event_date" required />
             
             
-            <button v-on:click.prevent="post">Add Concert</button>
+            <button name=add v-on:click.prevent="post">Add Concert</button>
         </form>
         <div v-if="submitted">
             <h3>Thanks for adding a concert</h3>

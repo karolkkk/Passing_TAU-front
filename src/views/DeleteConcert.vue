@@ -3,14 +3,13 @@
  <h1>All of our concerts</h1>
      <input type="text" v-model="search" placeholder="search" />  
   <div  v-for="concert in filteredConcerts" class="single-concert" >
-            <h2>{{ concert.artist | to-uppercase  }}</h2>
+            <h2>{{ concert.artist  }}</h2>
             <h2>{{ concert.event_date }}</h2>
             <article>{{ concert.location }}</article>
-           
-    
+            <input :value="concert.id" id="concertId" type="hidden">
   </div>
-  <v-layout row justify-center>
-  <v-btn
+   <v-layout row justify-center>
+  <v-btn name=delete
       color="primary"
       dark
       @click.stop="dialog = true"
@@ -25,7 +24,7 @@
       <v-card>
         <v-card-title class="headline">Wanna delete?</v-card-title>
 
-        <v-card-text>
+        <v-card-text name=usure>
          U sure?
         </v-card-text>
 
@@ -40,17 +39,17 @@
             don't
           </v-btn>
 
-          <v-btn
+          <v-btn name=yes
             color="green darken-1"
             flat="flat"
-            @click.prevent="greet"
+            @click.prevent="MYdelete"
           >
             Yaaaaas
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-layout>
+  </v-layout>  
   </div>
   
   
@@ -71,11 +70,19 @@ export default {
   },
   methods: {
        greet: function (event) {
-           
-       
+           this.$http.get("http://localhost:8080/concerts").then(function(data){
+         
+         this.concert=data.body;
+  })
+       },
+    MYdelete: function(){
+     var concertId = document.getElementById("concertId").value
+           this.$http.delete("http://localhost:8080/concerts/"+ concertId);
+       }
       
-    }
-  },
+    },
+  
+  
   created() {
       this.$http.get("http://localhost:8080/concerts").then(function(data){
          

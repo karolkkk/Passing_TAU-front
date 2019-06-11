@@ -4,7 +4,7 @@
  <h1>All of our concerts</h1>
      <input type="text" v-model="search" placeholder="search" />  
   <div  v-for="concert in filteredConcerts" class="single-concert" >
-            <h2>{{ concert.artist | to-uppercase  }}</h2>
+            <h2>{{ concert.artist   }}</h2>
             <h2>{{ concert.event_date }}</h2>
             <article>{{ concert.location }}</article>
             
